@@ -1,4 +1,5 @@
 from injector import Injector
+import uvicorn
 
 from src.infrastructure.app import create_app
 
@@ -7,8 +8,8 @@ app = create_app(Injector())
 
 # app = FastAPI()
 
-# if __name__ == "__main__":
-#     uvicorn.run("main:app")
+if __name__ == "__main__":
+    uvicorn.run("main:app")
 
 
 # @app.get("/")
