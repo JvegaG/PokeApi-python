@@ -1,5 +1,5 @@
 import os
-import json
+
 from fastapi import FastAPI
 from injector import Injector
 
@@ -12,10 +12,10 @@ config: ConfigurationEnv = Configuration(os.getenv("ENV", "dev")).get_config()
 def create_app(injector: Injector) -> FastAPI:
     app = FastAPI()
 
-    print("Iniciando app...")
-    obj_dict = vars(config)
+    # print("Iniciando app...")
+    # obj_dict = vars(config)
 
-    json_output = json.dumps(obj_dict, indent=4)
-    print(json_output)
+    # json_output = json.dumps(obj_dict, indent=4)
+    # print(json_output)
 
     return app

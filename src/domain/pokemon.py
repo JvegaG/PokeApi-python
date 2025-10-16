@@ -1,4 +1,7 @@
-class pokemon:
+from base_entity import BaseEntity
+
+
+class Pokemon(BaseEntity):
     def __init__(
         self,
         id: int,
@@ -8,6 +11,7 @@ class pokemon:
         weight: int,
         height: int,
     ):
+        super().__init__()
         self.id = id
         self.name = name
         self.base_experience = base_experience
