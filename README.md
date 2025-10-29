@@ -9,7 +9,7 @@ Template de Api hecha en python con Clean Architecture basado en la data del api
 
 ## Notas - Creación de propio entorno virtual (Opcional)
 
-Cuando se trabaja en Node al instalar paquetes modificamos el archivo package.json y al ejecutar `npm install ` se crea la carpeta node_modules con los packages de nuestro proyecto.
+Cuando se trabaja en Node al instalar paquetes modificamos el archivo package.json y al ejecutar `npm install ` se crea la carpeta **node_modules** con los packages de nuestro proyecto.
 
 Si queremos lograr algo similar en nuestro proyecto de python debemos configurar un entorno virtual, creamos la carpeta venv:
 
@@ -46,6 +46,15 @@ Si en algún momento deseas desactivar esto, cierras la terminal o ejecutas el c
 deactivate
 ```
 
+**¿Porque usar ./venv?** Si no hacemos estas practicas recomendadas vamos a llegar a instalar paquetes o librerias en la ubicacion de la instalacion global de python, al hacer eso podemos llegar a tener los siguientes inconvenientes:
+
+- Versiones incompatibles de las librerias (proyecto requiere v2 pero en mi global tengo la v1)
+- Dificil replicar el entorno en otra maquina o servidor.
+- Accidentalmente se actualizan dependencias en otro proyecto que afecta al tuyo.
+- Requiere permisos de administrador (sudo) en algunas ocasiones.
+
+Basicamente estas contaminando tu instalacion global de python, es por eso que se recomienda usar un entorno virtual de python (./venv). Con ello aislas tu proyecto y mantienes el conjunto de librerias con las versiones que tu necesitas para el mismo.
+
 ## Instalacion de módulos
 
 En el archivo ./requirements.txt se tiene todos los modulos necesarios para el proyecto. Para instalar los modulos ejecutar el comando:
@@ -54,26 +63,12 @@ En el archivo ./requirements.txt se tiene todos los modulos necesarios para el p
 pip install -r requirements.txt
 ```
 
-##### (Opcional)
-
-Si deseas utilizar **_fastapi Cli_** puedes instalarlo con el siguiente comando
-
-```bash
-pip install "fastapi[standard]"
-```
-
 ## Ejecución de proyecto
 
 Asegurate de colocar las variables de entorno correctas en tu archivo **.env.{Enviroment}**. De acuerdo a eso puedes ir cambiando tus variables como las necesites. Para levantar el proyecto se debe ejecutar el comando:
 
 ```bash
 Env=dev python main.py
-```
-
-En caso estes usando **_fastapi Cli_** puedes ejecutar:
-
-```bash
-fastapi dev main.py
 ```
 
 ## Testing

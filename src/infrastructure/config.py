@@ -12,9 +12,9 @@ class Configuration:
             f".env.{env}".format(env)
         )
 
-        postgres_db = __config_raw.get("POSTGRES_DB")
-        portDB = __config_raw.get("PORTDB")
-        database = __config_raw.get("DATABASE")
+        postgres_db = __config_raw.get("POSTGRES_DB") or ""
+        portDB = __config_raw.get("PORTDB") or ""
+        database = __config_raw.get("DATABASE") or ""
 
         self.config = ConfigurationEnv(postgres_db, portDB, database, env)
 
