@@ -3,5 +3,8 @@
   "python.linting.flake8Enabled": true,
   "python.formatting.provider": "black",
   "editor.formatOnSave": true,
-  "isort.check": true
+  "isort.check": true,
+  "python.analysis.extraPaths": [
+    "./src"
+  ]
 }

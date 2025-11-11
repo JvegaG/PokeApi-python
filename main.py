@@ -1,22 +1,16 @@
-from injector import Injector
-import uvicorn
+import sys
+from pathlib import Path
 
-from src.infrastructure.app import create_app
+# Agregar src al path
+sys.path.insert(0, str(Path(__file__).parent / "src"))
+
+import uvicorn
+from injector import Injector
+
+from infrastructure.app import create_app
 
 app = create_app(Injector())
 
 
-# app = FastAPI()
-
 if __name__ == "__main__":
     uvicorn.run("main:app")
-
-
-# @app.get("/")
-# def read_root():
-#     return {"Hello": "World"}
-
-
-# @app.get("/items/{item_id}")
-# def read_item(item_id: int, q: Union[str, None] = None):
-#     return {"item_id": item_id, "q": q}
