@@ -10,5 +10,5 @@ from domain.entities.pokemon import Pokemon
 class PokemonRepository(BaseRepository[Pokemon]):
 
     @abstractmethod
-    def find_by_name(self, name: str) -> Optional[Pokemon]:
+    async def find_by_name(self, name: str) -> Optional[Pokemon]:
         pass
