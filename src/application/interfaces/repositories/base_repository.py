@@ -1,39 +1,46 @@
 from abc import ABC, abstractmethod
-from typing import Generic, List, TypeVar
-
+from typing import Generic, List, Optional, TypeVar
 
 Entity = TypeVar("Entity")
 
 
-class IBaseRepository(ABC, Generic[Entity]):
+class BaseRepository(ABC, Generic[Entity]):
     @abstractmethod
-    def create(self, entity: Entity):
+    async def create(self, entity: Entity):
         """Create entity in DB"""
+        pass
 
     @abstractmethod
-    def create_list(self, entity_list: List[Entity]):
+    async def create_list(self, entity_list: List[Entity]):
         """Create a list of entities in DB"""
+        pass
 
     @abstractmethod
-    def find_by_uid(self, uid: str) -> Entity:
+    async def find_by_uid(self, uid: str) -> Optional[Entity]:
         """Find Pokemon by uid"""
+        pass
 
     @abstractmethod
-    def get_all(self) -> Entity:
+    async def get_all(self) -> List[Entity]:
         """get all data ok pokemon"""
+        pass
 
     @abstractmethod
-    def update(self, update_entity: Entity) -> None:
+    async def update(self, update_entity: Entity) -> None:
         """Update an object"""
+        pass
 
     @abstractmethod
-    def update_range(self, update_entity: List[Entity]) -> None:
+    async def update_range(self, update_entity: List[Entity]) -> None:
         """Update a list of objects"""
+        pass
 
     @abstractmethod
-    def delete_by_uid(self, uid: str) -> None:
+    async def delete_by_uid(self, uid: str) -> None:
         """Delete by uid"""
+        pass
 
     @abstractmethod
-    def delete_range(self, uid: List[str]) -> None:
+    async def delete_range(self, uid: List[str]) -> None:
         """Delete range of uid"""
+        pass

@@ -5,7 +5,7 @@ from typing import cast
 from fastapi import HTTPException, Request
 from fastapi.responses import JSONResponse
 
-from infrastructure.Error.api_exception import ApiException
+from infrastructure.error.api_exception import ApiException
 
 logger = logging.getLogger(__name__)
 

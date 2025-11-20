@@ -1,11 +1,11 @@
 import sys
 from pathlib import Path
 
-# Agregar src al path
-sys.path.insert(0, str(Path(__file__).parent / "src"))
-
 import uvicorn
 from injector import Injector
+
+# Agregar src al path
+sys.path.insert(0, str(Path(__file__).parent / "src"))
 
 from infrastructure.app import create_app
 

@@ -4,14 +4,14 @@ from fastapi import FastAPI
 from fastapi_injector import attach_injector
 from injector import Injector
 
-from infrastructure.Error.api_exception import ApiException
-from infrastructure.Error.error_handler import (
+from infrastructure.error.api_exception import ApiException
+from infrastructure.error.error_handler import (
     api_exception_handler,
     general_exception_handler,
 )
-from interfaces.api.Controllers import abilityController, pokemonController
-from infrastructure.env.config import Configuration
-from infrastructure.env.configuration_env import ConfigurationEnv
+from interfaces.api.controllers import abilityController, pokemonController
+from infrastructure.config.config import Configuration
+from infrastructure.config.configuration_env import ConfigurationEnv
 
 config: ConfigurationEnv = Configuration(os.getenv("ENV", "dev")).get_config()
 

@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from infrastructure.Error.api_exception import ApiException
+from infrastructure.error.api_exception import ApiException
 
 router = APIRouter()
 
