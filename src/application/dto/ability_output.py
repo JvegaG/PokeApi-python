@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from datetime import datetime
 
-from application.dto.specie_output_dto import SpecieOutputDto
+from application.dto.specie_output import SpecieOutputDto
 
 
 @dataclass

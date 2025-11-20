@@ -22,7 +22,6 @@ class Pokemon(BaseEntity):
         weight: int,
         height: int,
     ) -> "Pokemon":
-        """Factory method para crear usuario"""
 
         return cls(
             uid=str(uuid.uuid4()),
