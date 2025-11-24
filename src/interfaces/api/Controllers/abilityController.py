@@ -17,6 +17,18 @@ async def getAbility():
     #     )
 
 
+# @router.get("/{ability}")
+# async def getAbility_withstring(ability: str):
+#     try:
+#         return {"ability": ability}
+#     except ApiException:
+#         raise
+#     # except Exception as exception:
+#     #     raise ApiErrorHandling.http_error(
+#     #         "Unexpected error getting all cat facts", exception
+#     #     )
+
+
 @router.get("/{ability_id}")
 async def getAbilityById(ability_id: int):
     try:

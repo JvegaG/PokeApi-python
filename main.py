@@ -13,4 +13,4 @@ app = create_app(Injector())
 
 
 if __name__ == "__main__":
-    uvicorn.run("main:app")
+    uvicorn.run("main:app", reload=True)
