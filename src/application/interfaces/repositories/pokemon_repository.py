@@ -7,7 +7,7 @@ from domain.entities.pokemon import Pokemon
 
 
 @dataclass
-class PokemonRepository(BaseRepository[Pokemon]):
+class IPokemonRepository(BaseRepository[Pokemon]):
 
     @abstractmethod
     async def find_by_name(self, name: str) -> Optional[Pokemon]:

@@ -1,4 +1,6 @@
-from fastapi import APIRouter
+from src.application.use_cases.pokemon.create_pokemon import CreatePokemon
+from src.application.dto.pokemon_input import PokemonInputDto
+from fastapi import APIRouter, Depends
 
 from infrastructure.error.api_exception import ApiException
 
@@ -19,3 +21,12 @@ async def getPokemonById(pokemon_id: int):
         return {"pokemon": f"You have the Pokemon with id {pokemon_id}!"}
     except ApiException:
         raise
+
+
+@router.post("/")
+async def createPokemon(
+    request: PokemonInputDto,
+    use_case: CreatePokemon = Depends(get_create_pokemon_use_case),
+):
+    output = use_case.execute(request)
+    return output

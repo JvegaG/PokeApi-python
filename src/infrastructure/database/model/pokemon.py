@@ -1,8 +1,9 @@
-from sqlalchemy import Column, String, Integer, DateTime
+from sqlalchemy import Column, DateTime, Integer, String
+
 from src.infrastructure.database.database import Base
 
 
-class Pokemon(Base):
+class PokemonModel(Base):
     __tablename__ = "pokemon"
 
     uid = Column(String, primary_key=True, index=True)

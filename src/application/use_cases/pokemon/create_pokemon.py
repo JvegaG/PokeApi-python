@@ -1,11 +1,11 @@
 from application.dto.pokemon_input import PokemonInputDto
 from application.dto.pokemon_output import PokemonOutputDto
-from application.interfaces.repositories.pokemon_repository import PokemonRepository
+from application.interfaces.repositories.pokemon_repository import IPokemonRepository
 from application.mappers.pokemon_mapper import PokemonMapper
 
 
 class CreatePokemon:
-    def __init__(self, pokemon_repository: PokemonRepository):
+    def __init__(self, pokemon_repository: IPokemonRepository):
         self.pokemon_repository = pokemon_repository
 
     async def execute(self, input_dto: PokemonInputDto) -> PokemonOutputDto:
