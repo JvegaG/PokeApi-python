@@ -2,7 +2,7 @@ import logging
 from contextlib import contextmanager
 from typing import Generator
 
-from sqlalchemy import Engine, create_engine, event
+from sqlalchemy import Engine, create_engine, event, text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Session, sessionmaker
 from sqlalchemy.pool import QueuePool
@@ -208,7 +208,7 @@ def check_db_connection() -> bool:
     """
     try:
         with engine.connect() as conn:
-            conn.execute("SELECT 1")
+            conn.execute(text("SELECT 1"))
         logger.info("Database connection is healthy")
         return True
     except Exception as e:
@@ -229,9 +229,13 @@ def get_db_info() -> dict:
         "url": str(engine.url).replace(
             str(engine.url.password) if engine.url.password else "", "***"
         ),
-        "pool_size": engine.pool.size(),
-        "checked_out_connections": engine.pool.checkedout(),
-        "pool_overflow": engine.pool.overflow(),
+        "pool_size": engine.pool.size() if hasattr(engine.pool, "size") else 0,
+        "checked_out_connections": (
+            engine.pool.checkedout() if hasattr(engine.pool, "checkedout") else 0
+        ),
+        "pool_overflow": (
+            engine.pool.overflow() if hasattr(engine.pool, "overflow") else 0
+        ),
         "database_name": engine.url.database,
     }
 
@@ -339,12 +343,17 @@ def get_pool_status() -> dict:
     """
     pool = engine.pool
     return {
-        "pool_size": pool.size(),
-        "checked_in": pool.checkedin(),
-        "checked_out": pool.checkedout(),
-        "overflow": pool.overflow(),
-        "queue_size": pool._queue.qsize() if hasattr(pool._queue, "qsize") else 0,
-        "total_connections": pool.size() + pool.overflow(),
+        "pool_size": pool.size() if hasattr(pool, "size") else 0,
+        "checked_in": pool.checkedin() if hasattr(pool, "checkedin") else 0,
+        "checked_out": pool.checkedout() if hasattr(pool, "checkedout") else 0,
+        "overflow": pool.overflow() if hasattr(pool, "overflow") else 0,
+        "queue_size": (
+            pool._queue.qsize()
+            if hasattr(pool, "_queue") and hasattr(pool._queue, "qsize")
+            else 0
+        ),
+        "total_connections": (pool.size() if hasattr(pool, "size") else 0)
+        + (pool.overflow() if hasattr(pool, "overflow") else 0),
     }
 
 
