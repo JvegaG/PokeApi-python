@@ -9,9 +9,9 @@ from infrastructure.error.error_handler import (
     api_exception_handler,
     general_exception_handler,
 )
-from interfaces.api.controllers import abilityController, pokemonController
 from infrastructure.config.config import Configuration
 from infrastructure.config.configuration_env import ConfigurationEnv
+from interface_adapters.api.controllers import abilityController, pokemonController
 
 config: ConfigurationEnv = Configuration(os.getenv("ENV", "dev")).get_config()
 
@@ -19,7 +19,7 @@ api_version = "v1"
 
 
 def create_app(injector: Injector) -> FastAPI:
-    app = FastAPI(title=config.Project_name)
+    app = FastAPI(title=config.project_name)
 
     # print("Iniciando app...")
     # obj_dict = vars(config)
@@ -40,9 +40,6 @@ def create_app(injector: Injector) -> FastAPI:
         prefix="/api/{}/pokemon".format(api_version),
         tags=["pokemon"],
     )
-    # injector.binder.bind(
-    #     RepositoriesFactory, to=repositories_factory, scope=SingletonScope
-    # )
 
     attach_injector(app, injector)
     return app

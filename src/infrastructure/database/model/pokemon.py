@@ -1,18 +1,20 @@
-from sqlalchemy import Column, DateTime, Integer, String
+from sqlalchemy import DateTime, Integer, String
+from sqlalchemy.orm import Mapped, mapped_column
+from datetime import datetime
 
-from src.infrastructure.database.database import Base
+from infrastructure.database.database import Base
 
 
 class PokemonModel(Base):
     __tablename__ = "pokemon"
 
-    uid = Column(String, primary_key=True, index=True)
-    name = Column(String, index=True)
-    base_experience = Column(Integer)
-    locationarea_encounters = Column(String)
-    weight = Column(Integer)
-    height = Column(Integer)
-    app_created_by = Column(String)
-    app_creation_date = Column(DateTime)
-    app_last_update_by = Column(String)
-    app_last_update_date = Column(DateTime)
+    uid: Mapped[str] = mapped_column(String, primary_key=True, index=True)
+    name: Mapped[str] = mapped_column(String, index=True)
+    base_experience: Mapped[int] = mapped_column(Integer)
+    locationarea_encounters: Mapped[str] = mapped_column(String)
+    weight: Mapped[int] = mapped_column(Integer)
+    height: Mapped[int] = mapped_column(Integer)
+    app_created_by: Mapped[str] = mapped_column(String)
+    app_creation_date: Mapped[datetime] = mapped_column(DateTime)
+    app_last_update_by: Mapped[str] = mapped_column(String)
+    app_last_update_date: Mapped[datetime] = mapped_column(DateTime)

@@ -1,6 +1,6 @@
 from application.dto.ability_output import AbilityOutputDto
 from application.interfaces.presenters.ability_presenter import AbilityPresenter
-from interfaces.api.presenters.json_species_presenter import JsonSpeciePresenter
+from interface_adapters.api.presenters.json_species_presenter import JsonSpeciePresenter
 
 
 class JsonAbilityPresenter(AbilityPresenter):

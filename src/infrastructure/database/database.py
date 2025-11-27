@@ -1,5 +1,6 @@
 import logging
 from contextlib import contextmanager
+import os
 from typing import Generator
 
 from sqlalchemy import Engine, create_engine, event, text
@@ -7,7 +8,10 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Session, sessionmaker
 from sqlalchemy.pool import QueuePool
 
-from infrastructure.app import config
+from infrastructure.config.config import Configuration
+from infrastructure.config.configuration_env import ConfigurationEnv
+
+config: ConfigurationEnv = Configuration(os.getenv("ENV", "dev")).get_config()
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -178,10 +182,7 @@ def import_all_models() -> None:
     """
     try:
         # Import your models here so SQLAlchemy knows about them
-        # Example:
-        # from domain.models.pokemon_model import Pokemon, Type, PokemonAbility
-        # from domain.models.user_model import User
-        pass
+        from infrastructure.database.model.pokemon import PokemonModel  # noqa: F401
     except ImportError as e:
         logger.warning(f"Could not import models: {str(e)}")
 

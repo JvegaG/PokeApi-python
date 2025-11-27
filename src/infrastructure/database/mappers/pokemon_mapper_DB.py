@@ -1,5 +1,6 @@
-from src.domain.entities.pokemon import Pokemon
-from src.infrastructure.database.model.pokemon import PokemonModel
+from typing import Optional
+from domain.entities.pokemon import Pokemon
+from infrastructure.database.model.pokemon import PokemonModel
 
 
 class PokemonMapperDB:
@@ -19,7 +20,7 @@ class PokemonMapperDB:
         )
 
     @staticmethod
-    def _to_entity(model: PokemonModel) -> Pokemon:
+    def _to_entity(model: PokemonModel) -> Optional[Pokemon]:
         if not model:
             return None
         return Pokemon(
