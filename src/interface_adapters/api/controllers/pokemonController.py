@@ -8,6 +8,9 @@ from infrastructure.config.dependencies.pokemonDependency import (
     get_create_pokemon_use_case,
 )
 from infrastructure.error.api_exception import ApiException
+from interface_adapters.api.presenters.json_pokemon_presenter import (
+    JsonPokemonPresenter,
+)
 
 router = APIRouter()
 
@@ -27,9 +30,9 @@ async def getPokemonById(
 ):
     try:
         output = await use_case.execute(pokemon_id)
-        # result = JsonPokemonPresenter.present(output)
+        result = JsonPokemonPresenter.present(output)
         # result = TablePokemonPresenter.present(output)
-        return output
+        return result
     except ApiException:
         raise
 
