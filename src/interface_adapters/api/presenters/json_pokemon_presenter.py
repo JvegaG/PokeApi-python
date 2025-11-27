@@ -4,7 +4,8 @@ from application.interfaces.presenters.pokemon_presenter import PokemonPresenter
 
 class JsonPokemonPresenter(PokemonPresenter):
 
-    def present(self, pokemon_data: PokemonOutputDto) -> dict:
+    @staticmethod
+    def present(pokemon_data: PokemonOutputDto) -> dict:
         return {
             "uid": pokemon_data.uid,
             "name": pokemon_data.name,

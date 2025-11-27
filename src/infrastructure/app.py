@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from fastapi_injector import attach_injector
 from injector import Injector
 
+from infrastructure.database.database import init_db
 from infrastructure.error.api_exception import ApiException
 from infrastructure.error.error_handler import (
     api_exception_handler,
@@ -20,7 +21,7 @@ api_version = "v1"
 
 def create_app(injector: Injector) -> FastAPI:
     app = FastAPI(title=config.project_name)
-
+    init_db()
     # print("Iniciando app...")
     # obj_dict = vars(config)
 

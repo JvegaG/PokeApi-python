@@ -4,7 +4,8 @@ from application.interfaces.presenters.specie_presenter import SpeciePresenter
 
 class JsonSpeciePresenter(SpeciePresenter):
 
-    def present(self, specie_data: SpecieOutputDto) -> dict:
+    @staticmethod
+    def present(specie_data: SpecieOutputDto) -> dict:
         return {
             "uid": specie_data.uid,
             "name": specie_data.name,

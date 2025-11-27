@@ -1,12 +1,12 @@
+from fastapi import APIRouter, Depends
+
+from application.dto.pokemon_input import PokemonInputDto
+from application.use_cases.pokemon.create_pokemon import CreatePokemon
 from application.use_cases.pokemon.get_pokemon import GetPokemonUseCase
 from infrastructure.config.dependencies.pokemonDependency import (
     get_by_uid_pokemon_use_case,
     get_create_pokemon_use_case,
 )
-from application.use_cases.pokemon.create_pokemon import CreatePokemon
-from application.dto.pokemon_input import PokemonInputDto
-from fastapi import APIRouter, Depends
-
 from infrastructure.error.api_exception import ApiException
 
 router = APIRouter()
@@ -27,6 +27,8 @@ async def getPokemonById(
 ):
     try:
         output = await use_case.execute(pokemon_id)
+        # result = JsonPokemonPresenter.present(output)
+        # result = TablePokemonPresenter.present(output)
         return output
     except ApiException:
         raise

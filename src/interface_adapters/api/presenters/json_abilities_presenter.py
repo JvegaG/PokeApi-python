@@ -5,7 +5,8 @@ from interface_adapters.api.presenters.json_species_presenter import JsonSpecieP
 
 class JsonAbilityPresenter(AbilityPresenter):
 
-    def present(self, ability_data: AbilityOutputDto) -> dict:
+    @staticmethod
+    def present(ability_data: AbilityOutputDto) -> dict:
         return {
             "uid": ability_data.uid,
             "specie": JsonSpeciePresenter().present(ability_data.specie),
